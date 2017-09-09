@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
     <flow name="fj36-estoque-proxyFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/EstoqueWS" allowedMethods="POST" doc:name="EstoqueWS Listener"/>
         <cxf:proxy-service payload="envelope" doc:name="CXF Proxy"/>
-        <mulexml:xslt-transformer xsl-file="/home/soa6943/AnypointStudio/workspace/fj36-estoque-proxy/src/main/resources/soap-header.xslt" maxIdleTransformers="2" maxActiveTransformers="5" doc:name="SOAP Header"/>
+        <mulexml:xslt-transformer encoding="GB18030" xsl-file="/home/soa6943/AnypointStudio/workspace/fj36-estoque-proxy/src/main/resources/soap-header.xslt" maxIdleTransformers="2" maxActiveTransformers="5" doc:name="SOAP Header"/>
         <logger message="#[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>
         <choice doc:name="Choice">
             <when expression="#[xpath3(&quot;//*[namespace-uri() = 'http://caelum.com.br/estoquews/v1']&quot;, payload, 'BOOLEAN' )]">
